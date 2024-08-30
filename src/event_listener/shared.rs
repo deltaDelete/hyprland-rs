@@ -748,7 +748,7 @@ pub(crate) fn event_parser(event: String) -> crate::Result<Vec<Event>> {
             ParsedEventType::ActiveWindowChangedV1 => {
                 let class = &captures["class"];
                 let title = &captures["title"];
-                let event = if !class.is_empty() && !title.is_empty() {
+                let event = if !class.is_empty() || !title.is_empty() {
                     Event::ActiveWindowChangedV1(Some((class.to_string(), title.to_string())))
                 } else {
                     Event::ActiveWindowChangedV1(None)
